@@ -9,8 +9,15 @@ class DeBank
 {
     protected const BASE_URI = 'https://pro-openapi.debank.com';
 
+    /**
+     * @var Client
+     */
     private Client $httpClient;
 
+    /**
+     * @param  string  $accessKey
+     * @param  Client|null  $client
+     */
     public function __construct(string $accessKey, ?Client $client = null)
     {
         $this->httpClient = $client ?: new Client([
@@ -19,11 +26,17 @@ class DeBank
         ]);
     }
 
+    /**
+     * @return Client
+     */
     public function getHttpClient(): Client
     {
         return $this->httpClient;
     }
 
+    /**
+     * @return User
+     */
     public function user(): User
     {
         return new User($this);

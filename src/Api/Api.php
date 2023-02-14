@@ -11,12 +11,24 @@ use Nemo\DeBank\ResponseTransformer;
 
 class Api
 {
+    /**
+     * @var DeBank
+     */
     protected DeBank $client;
 
+    /**
+     * @var string
+     */
     private string $version = 'v1';
 
+    /**
+     * @var ResponseTransformer
+     */
     protected ResponseTransformer $transformer;
 
+    /**
+     * @param  DeBank  $client
+     */
     public function __construct(DeBank $client)
     {
         $this->client = $client;
