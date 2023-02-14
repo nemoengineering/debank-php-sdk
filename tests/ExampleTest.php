@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Nemo\DeBank\Tests;
 
 use PHPUnit\Framework\TestCase;
 
