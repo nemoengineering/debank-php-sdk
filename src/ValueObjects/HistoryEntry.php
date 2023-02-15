@@ -10,6 +10,7 @@ class HistoryEntry
         public ?string $categoryId, // call type.
         public string $chain, // chain id.
         public string $id, // transaction hash.
+        public ?string $otherAddress,
         public ?string $projectId, // project id which was interacted.
         public array $sends, // valid when categoryId is send.
         public array $receives, // valid when categoryId is receive.
@@ -23,15 +24,16 @@ class HistoryEntry
     public static function fromResponse(array $response): HistoryEntry
     {
         return new HistoryEntry(
-            categoryId: $response['cate_id'],
+            categoryId: $response['cate_id'] ?? null,
             chain: $response['chain'],
             id: $response['id'],
-            projectId: $response['project_id'],
+            otherAddress: $response['other_addr'] ?? null,
+            projectId: $response['project_id'] ?? null,
             sends: $response['sends'],
             receives: $response['receives'],
-            tokenApprove: $response['token_approve'],
+            tokenApprove: $response['token_approve'] ?? null,
             timeAt: CarbonImmutable::createFromTimestamp($response['time_at']),
-            tx: $response['tx'],
+            tx: $response['tx'] ?? null,
         );
     }
 }
