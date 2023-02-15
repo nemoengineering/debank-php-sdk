@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use GuzzleHttp\Exception\GuzzleException;
 use Nemo\DeBank\Exceptions\IllegalParameterException;
 use Nemo\DeBank\ValueObjects\Chain;
+use Nemo\DeBank\ValueObjects\ComplexProtocol;
 use Nemo\DeBank\ValueObjects\Token;
 use Nemo\DeBank\ValueObjects\TransactionHistory;
 
@@ -27,6 +28,30 @@ class User extends Api
         $res = $this->get('user/used_chain_list', $params);
 
         return array_map(fn ($i) => Chain::fromResponse($i), $res);
+    }
+
+    /**
+     * Get user complex protocol list
+     *
+     * @param  string  $id
+     * @param  string|array  $chainIds
+     * @return array
+     *
+     * @throws GuzzleException
+     */
+    public function getComplexProtocolList(string $id, string|array $chainIds): array
+    {
+        $params['id'] = $id;
+
+        if (is_array($chainIds)) {
+            $params['chain_ids'] = implode(',', $chainIds);
+            $res = $this->get('user/all_complex_protocol_list', $params);
+        } else {
+            $params['chain_id'] = $chainIds;
+            $res = $this->get('user/complex_protocol_list', $params);
+        }
+
+        return array_map(fn ($i) => ComplexProtocol::fromResponse($i), $res);
     }
 
     /**
