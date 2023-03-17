@@ -14,7 +14,7 @@ class Token
         public ?string $displaySymbol, //  The token's displayed symbol. If two tokens have the same symbol, they are distinguished by $displaySymbol.
         public string $optimizedSymbol, // For front-end display. $optimizedSymbol || $displaySymbol || $symbol.
         public int $decimals, // The number of decimals of the token. null if not defined in the contract and not available from other sources.
-        public string $logoUrl, // URL of the token's logo image. null if not available.
+        public ?string $logoUrl, // URL of the token's logo image. null if not available.
         public bool $isVerified, // Whether it has been verified.
         public bool $isCore, // Whether to show as a common token in the wallet.
         public float $price, // USD price. Price of 0 means no data.
